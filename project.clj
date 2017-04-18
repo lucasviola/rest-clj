@@ -1,10 +1,11 @@
 (defproject hello-world "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
-  :min-lein-version "2.0.0"
+  :min-lein-version "2.5.2"
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [compojure "1.5.1"]
-                 [ring/ring-defaults "0.2.1"]
+                 [metosin/compojure-api "1.1.10"]
+                 [compojure "1.5.2"]
+                 [ring/ring-defaults "0.2.3"]
                  [expectations "2.2.0-beta1"]]
   :ring {:handler hello-world.handler/app}
   :profiles

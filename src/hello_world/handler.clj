@@ -1,11 +1,11 @@
 (ns hello-world.handler
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
-
-(defroutes app-routes
-  (GET "/" [] "Hello World")
-  (route/not-found "Not Found"))
+  (:require [compojure.api.sweet :as compojure]
+            [ring.util.http-response :as http]
+            [compojure.route :as route]))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (compojure/api
+    (compojure/context "" []
+      (compojure/GET "/" []
+        (http/ok "Hello World")))
+      (route/not-found "Not Found")))
