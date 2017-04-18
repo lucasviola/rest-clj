@@ -6,8 +6,9 @@
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
                  [expectations "2.2.0-beta1"]]
-  :plugins [[lein-ring "0.9.7"]]
   :ring {:handler hello-world.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-mock "0.3.0"]]}})
+                        [ring/ring-mock "0.3.0"]]
+         :plugins [[lein-ring "0.9.7"]
+                   [com.jakemccrary/lein-test-refresh "0.19.0"]]}})

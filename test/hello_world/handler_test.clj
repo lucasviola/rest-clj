@@ -1,14 +1,14 @@
 (ns hello-world.handler-test
-  (:require [clojure.test :refer [deftest is]]
+  (:require [expectations :refer :all]
+            [expectations.clojure.test :refer [defexpect]]
             [ring.mock.request :as mock]
             [hello-world.handler :refer :all]))
 
-(deftest test-app
-  (testing "main route"
-    (let [response (app (mock/request :get "/"))]
-      (is ( (:status response) 200))
-      (is ( (:body response) "Hello World"))))
+(let [response (app (mock/request :get "/"))]
+  (defexpect main-route
+    (expect 200 (:status response))
+    (expect "Hello World" (:body response))))
 
-  (testing "not-found route"
-    (let [response (app (mock/request :get "/invalid"))]
-      (is ( (:status response) 404)))))
+(let [response (app (mock/request :get "/invalid"))]
+  (defexpect not-found-route
+    (expect 404 (:status response))))
